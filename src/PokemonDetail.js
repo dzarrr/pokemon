@@ -36,6 +36,7 @@ export default class PokemonDetail extends React.Component {
   render(){
     return (
       <div className="container">
+        <h5 className="title is-5" align="center">Pokemon Detail</h5>
         <PokemonTable pokemons={this.state.pokemons} nextURL={this.state.nextURL} 
           prevURL={this.state.prevURL}
           onButtonClick={this.onButtonClick}
