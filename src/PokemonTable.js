@@ -2,16 +2,11 @@ import React from 'react';
 import './PokemonTable.css';
 
 
-function PokemonTable(){
-  let testArray = [
-    {name: "bulbasaur", owned: "1"},
-    {name: "stegosaur", owned: "1"},
-    {name: "rhydon", owned: "1"},
-    {name: "rhyhorn", owned: "1"},
-  ]
-  const tableBody = testArray.map( pokemon => {
+function PokemonTable(props){
+  const { pokemons, nextURL, prevURL } = props
+  const tableBody = pokemons.map( pokemon => {
     return(
-      <tr>
+      <tr key={pokemon.name}>
         <td>{pokemon.name}</td>
         <td>{pokemon.owned}</td>
       </tr>
@@ -34,10 +29,10 @@ function PokemonTable(){
         </table>
       </div>
       <div className="container button-container">
-        <button className="button is-pulled-left">
+        <button className="button is-pulled-left" onClick={() => props.onButtonClick(prevURL)} disabled={prevURL === null}>
           Prev
         </button>
-        <button className="button is-pulled-right">
+        <button className="button is-pulled-right" onClick={() => props.onButtonClick(nextURL)} disabled={nextURL === null}>
           Next
         </button>
       </div>
