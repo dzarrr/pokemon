@@ -1,47 +1,23 @@
 import React from 'react';
+import PokemonCard from './PokemonCard.js';
 import axios from 'axios';
-import PokemonTable from './PokemonTable.js';
 
-export default class PokemonDetail extends React.Component {
-  state = {
-    pokemons: [],
-    nextURL: "",
-    prevURL: ""
-  }
-
-  onButtonClick = (url) => {
-    axios.get(url)
-      .then(res => {
-        this.setState({
-          pokemons: res.data.results,
-          nextURL: res.data.next,
-          prevURL: res.data.previous,
-        })
-        console.log(this.state);
-      })
-  }
-
-  componentDidMount() {
-    axios.get('https://pokeapi.co/api/v2/pokemon')
-      .then(res => {
-        this.setState({
-          pokemons: res.data.results,
-          nextURL: res.data.next,
-          prevURL: res.data.previous,
-        })
-        console.log(this.state);
-      })
-  }
-
+export default class PokemonDetail extends React.Component{
   render(){
+    const { imgURL, name, types } = this.props;
+    console.log(imgURL, name, types);
     return (
-      <div className="container">
-        <h5 className="title is-5" align="center">Pokemon Detail</h5>
-        <PokemonTable pokemons={this.state.pokemons} nextURL={this.state.nextURL} 
-          prevURL={this.state.prevURL}
-          onButtonClick={this.onButtonClick}
+      <div className={`modal ${this.props.isModalActive ? 'is-active' : ''}`}>
+      <div className="modal-background" onClick={() => this.props.closeModal()}></div>
+      <div className="modal-content">
+        <PokemonCard
+          name={name}
+          imgURL={imgURL}
+          types={types}
         />
       </div>
+      <button className="modal-close is-large" aria-label="close" onClick={() => this.props.closeModal()}></button>
+    </div>
     )
   }
 }

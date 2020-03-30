@@ -1,12 +1,12 @@
 import React from 'react';
 import './PokemonTable.css';
 
-
 function PokemonTable(props){
   const { pokemons, nextURL, prevURL } = props
+
   const tableBody = pokemons.map( pokemon => {
     return(
-      <tr key={pokemon.name}>
+      <tr key={pokemon.name} onClick={() => props.showDetail(pokemon.name)}>
         <td>{pokemon.name}</td>
         <td>{pokemon.owned}</td>
       </tr>
@@ -16,7 +16,7 @@ function PokemonTable(props){
   return(
     <div className="table-container">
       <div className="container">
-        <table className="table">
+        <table className="table is-striped">
           <thead>
             <tr>
               <th>Name</th>
