@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import PokemonList from './PokemonList';
+import MyPokemon from './MyPokemon';
 
 const routing = (
   <Router>
@@ -16,9 +17,13 @@ const routing = (
         <li>
           <Link to="/list">Link</Link>
         </li>
+        <li>
+          <Link to="/mypokemon">My Pokemon</Link>
+        </li>
       </ul>
       <Route exact path="/" component={App}/>
       <Route exact path="/list" component={PokemonList} />
+      <Route exact path="/mypokemon" component={MyPokemon} />
     </div>
   </Router>
 )
