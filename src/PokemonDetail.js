@@ -1,11 +1,9 @@
 import React from 'react';
 import PokemonCard from './PokemonCard.js';
-import axios from 'axios';
 
 export default class PokemonDetail extends React.Component{
   render(){
-    const { imgURL, name, types } = this.props;
-    console.log(imgURL, name, types);
+    const { imgURL, name, types, moves, handleButtonClick } = this.props;
     return (
       <div className={`modal ${this.props.isModalActive ? 'is-active' : ''}`}>
       <div className="modal-background" onClick={() => this.props.closeModal()}></div>
@@ -14,6 +12,8 @@ export default class PokemonDetail extends React.Component{
           name={name}
           imgURL={imgURL}
           types={types}
+          moves={moves}
+          onCatchButtonClick={handleButtonClick}
         />
       </div>
       <button className="modal-close is-large" aria-label="close" onClick={() => this.props.closeModal()}></button>

@@ -5,10 +5,12 @@ function PokemonTable(props){
   const { pokemons, nextURL, prevURL } = props
 
   const tableBody = pokemons.map( pokemon => {
+    let ownedPokemons = JSON.parse(window.localStorage.getItem(pokemon.name));
+    let N_ownedPokemons = ownedPokemons === null ? 0 : ownedPokemons.nicknames.length
     return(
       <tr key={pokemon.name} onClick={() => props.showDetail(pokemon.name)}>
         <td>{pokemon.name}</td>
-        <td>{pokemon.owned}</td>
+        <td>{N_ownedPokemons}</td>
       </tr>
     )
   })

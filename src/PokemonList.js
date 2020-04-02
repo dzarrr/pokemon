@@ -20,7 +20,11 @@ export default class PokemonList extends React.Component {
           nextURL: res.data.next,
           prevURL: res.data.previous,
         })
-        console.log(this.state);
+        this.state.pokemons.forEach(pokemon => {
+          if (window.localStorage.getItem(pokemon.name) === null){
+            window.localStorage.setItem(pokemon.name, JSON.stringify({nicknames: []}))
+          }
+        });
       })
   }
 
@@ -28,7 +32,21 @@ export default class PokemonList extends React.Component {
     this.setState({
       isModalActive: false,
     })
-    console.log(this.state);
+  }
+
+  onCatchButtonClick = (pokemon) => {
+    if (Math.random() < 0.5){
+      alert(`Failed to catch ${pokemon}`);
+    } else {
+      let nickname = prompt(`Catched wild ${pokemon}!`);
+      alert(nickname);
+      let currentPokemon = JSON.parse(window.localStorage.getItem(pokemon.toLowerCase()));
+      console.log(currentPokemon.nicknames);
+      currentPokemon.nicknames.push(nickname);
+      console.log('currentPokemon siap tembak: ', JSON.parse(JSON.stringify(currentPokemon)));
+      window.localStorage.setItem(pokemon.toLowerCase(), JSON.stringify(currentPokemon));
+      this.closeModal();
+    }
   }
 
   showDetail = (pokemon) => {
@@ -38,11 +56,11 @@ export default class PokemonList extends React.Component {
           isModalActive: true,
           selectedPokemon: {
             sprites: res.data.sprites.front_default,
-            types: res.data.types,
-            name: res.data.name
+            types: res.data.types.map((type) => type.type.name),
+            name: res.data.name,
+            moves: res.data.moves
           }
         })
-        console.log(this.state);
       })
   }
 
@@ -54,7 +72,12 @@ export default class PokemonList extends React.Component {
           nextURL: res.data.next,
           prevURL: res.data.previous,
         })
-        console.log(this.state);
+
+        this.state.pokemons.forEach(pokemon => {
+          if (window.localStorage.getItem(pokemon.name) === null){
+            window.localStorage.setItem(pokemon.name, JSON.stringify({nicknames: []}))
+          }
+        });
       })
   }
 
@@ -73,6 +96,8 @@ export default class PokemonList extends React.Component {
           imgURL={this.state.selectedPokemon.sprites}
           types={this.state.selectedPokemon.types}
           name={this.state.selectedPokemon.name}
+          moves={this.state.selectedPokemon.moves}
+          handleButtonClick={this.onCatchButtonClick}
         />
       </div>
     )
