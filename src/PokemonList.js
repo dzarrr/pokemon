@@ -41,9 +41,7 @@ export default class PokemonList extends React.Component {
       let nickname = prompt(`Catched wild ${pokemon}!`);
       alert(nickname);
       let currentPokemon = JSON.parse(window.localStorage.getItem(pokemon.toLowerCase()));
-      console.log(currentPokemon.nicknames);
       currentPokemon.nicknames.push(nickname);
-      console.log('currentPokemon siap tembak: ', JSON.parse(JSON.stringify(currentPokemon)));
       window.localStorage.setItem(pokemon.toLowerCase(), JSON.stringify(currentPokemon));
       this.closeModal();
     }
