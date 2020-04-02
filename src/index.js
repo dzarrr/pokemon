@@ -1,12 +1,30 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import PokemonList from './PokemonList';
 
+const routing = (
+  <Router>
+    <div>
+      <ul>
+        <li>
+          <Link to="/">App</Link>
+        </li>
+        <li>
+          <Link to="/list">Link</Link>
+        </li>
+      </ul>
+      <Route exact path="/" component={App}/>
+      <Route exact path="/list" component={PokemonList} />
+    </div>
+  </Router>
+)
 ReactDOM.render(
   <React.StrictMode>
-    <PokemonList />
+    {routing}
   </React.StrictMode>,
   document.getElementById('root')
 );
