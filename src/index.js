@@ -13,7 +13,7 @@ const routing = (
       <div className="tabs">
         <ul>
           <li>
-            <Link to="/list">Link</Link>
+            <Link to="/list">Pokemon List</Link>
           </li>
           <li>
             <Link to="/mypokemon">My Pokemon</Link>
