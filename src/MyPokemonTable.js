@@ -4,13 +4,16 @@ import './PokemonTable.css';
 function PokemonTable(props){
   const { pokemons } = props
 
-  const tableBody = pokemons.map( pokemon => {
-    let ownedPokemons = JSON.parse(window.localStorage.getItem(pokemon.name));
-    let N_ownedPokemons = ownedPokemons === null ? 0 : ownedPokemons.nicknames.length
+  const tableBody = pokemons.map( (pokemon, index) => {
     return(
-      <tr key={pokemon.name} onClick={() => props.showDetail(pokemon.name)}>
+      <tr key={index}>
         <td>{pokemon.name}</td>
-        <td>{N_ownedPokemons}</td>
+        <td>{pokemon.nickname}</td>
+        <td>
+          <button className="button is-danger is-small is-outlined" onClick={ () => props.onButtonClick(pokemon.name, pokemon.nickname)}>
+            release
+          </button>
+        </td>
       </tr>
     )
   })
@@ -22,21 +25,14 @@ function PokemonTable(props){
           <thead>
             <tr>
               <th>Name</th>
-              <th>Owned</th>
+              <th>Nickname</th>
+              <th>Release</th>
             </tr>
           </thead>
           <tbody>
             {tableBody}
           </tbody>
         </table>
-      </div>
-      <div className="container button-container">
-        <button className="button is-pulled-left" onClick={() => props.onButtonClick(prevURL)} disabled={prevURL === null}>
-          Prev
-        </button>
-        <button className="button is-pulled-right" onClick={() => props.onButtonClick(nextURL)} disabled={nextURL === null}>
-          Next
-        </button>
       </div>
     </div>
   );
