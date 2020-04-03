@@ -18,7 +18,7 @@ function PokemonTable(props){
   return(
     <div className="table-container">
       <div className="container">
-        <table className="table is-striped">
+        <table className="table is-hoverable">
           <thead>
             <tr>
               <th>Name</th>
