@@ -20,7 +20,7 @@ const routing = (
           </li>
         </ul>
       </div>
-      <Route exact path="/" component={PokemonList}/>
+      <Route exact path="/pokemon" component={PokemonList}/>
       <Route exact path="/list" component={PokemonList} />
       <Route exact path="/mypokemon" component={MyPokemon} />
     </div>
