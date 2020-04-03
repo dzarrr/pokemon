@@ -38,7 +38,7 @@ export default class PokemonList extends React.Component {
     if (Math.random() < 0.5){
       alert(`Failed to catch ${pokemon}`);
     } else {
-      let nickname = prompt(`Catched wild ${pokemon}!`);
+      let nickname = prompt(`Catched wild ${pokemon}!\nWould you like to give nickname to your captured pokemon?`);
       alert(nickname);
       let currentPokemon = JSON.parse(window.localStorage.getItem(pokemon.toLowerCase()));
       currentPokemon.nicknames.push(nickname);
