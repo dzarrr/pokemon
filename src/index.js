@@ -10,18 +10,17 @@ import MyPokemon from './MyPokemon';
 const routing = (
   <Router>
     <div>
-      <ul>
-        <li>
-          <Link to="/">App</Link>
-        </li>
-        <li>
-          <Link to="/list">Link</Link>
-        </li>
-        <li>
-          <Link to="/mypokemon">My Pokemon</Link>
-        </li>
-      </ul>
-      <Route exact path="/" component={App}/>
+      <div className="tabs">
+        <ul>
+          <li>
+            <Link to="/list">Link</Link>
+          </li>
+          <li>
+            <Link to="/mypokemon">My Pokemon</Link>
+          </li>
+        </ul>
+      </div>
+      <Route exact path="/" component={PokemonList}/>
       <Route exact path="/list" component={PokemonList} />
       <Route exact path="/mypokemon" component={MyPokemon} />
     </div>
